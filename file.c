@@ -9,7 +9,7 @@
 #include<sys/stat.h>
 #include<time.h>
 
-//Function to compare two strings
+//Function to compare two strings irrespective of the case
 int strcmpi(char* s1, char* s2)
 {
 	int i;
