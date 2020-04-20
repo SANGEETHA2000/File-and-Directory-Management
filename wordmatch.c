@@ -6,18 +6,25 @@
 #include<unistd.h>
 #include<ctype.h>
 
+int strcmpi(char* s1, char* s2)
+{
+	int i;
+	if(strlen(s1)!=strlen(s2))
+        	return -1;
+	for(i=0;i<strlen(s1);i++)
+	{
+        	if(toupper(s1[i])!=toupper(s2[i]))
+        		return s1[i]-s2[i];
+    	}
+    return 0;
+}
+
 int main(int argc,char *argv[])
 {
 	int size,cnt,d,i;
         char direc[100],word[PATH_MAX],command[PATH_MAX],pattern[PATH_MAX],c;
         struct dirent *dp;
-	if(argc==2)
-        {
-		getcwd(direc,(size_t)size);
-        	printf("Current directory: %s\n",direc);
-		strcpy(pattern,argv[1]);
-	}
-	else if(argc==3)
+	if(argc==3)
 	{
 		strcpy(pattern,argv[2]);
 		strcpy(command,"find $(cd ; pwd) -name ");
@@ -72,7 +79,7 @@ int main(int argc,char *argv[])
 					strncat(word,&c,1);
 				else
 				{
-					if(strcmp(word,pattern)==0)
+					if(strcmpi(word,pattern)==0)
 					{
 						cnt++;
 					}
@@ -84,4 +91,5 @@ int main(int argc,char *argv[])
 		}
 	}
 	closedir(dir);
+	return 0;
 }
