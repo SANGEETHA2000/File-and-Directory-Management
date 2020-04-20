@@ -8,6 +8,33 @@
 #include<fcntl.h>
 #include<ctype.h>
 
+int strcmpi(char* s1, char* s2)
+{
+        int i;
+        if(strlen(s1)!=strlen(s2))
+                return -1;
+
+        for(i=0;i<strlen(s1);i++)
+        {
+                if(toupper(s1[i])!=toupper(s2[i]))
+                        return s1[i]-s2[i];
+        }
+    return 0;
+}
+
+void strlwr(char s[])
+{
+        int c=0;
+        while(s[c]!='\0')
+        {
+                if(s[c]>='A' && s[c]<='Z')
+                {   
+			s[c]=s[c]+32;
+                }
+                c++;
+        }
+}
+
 int main(int argc, char *argv[])
 {
         if(argc==3)
@@ -193,7 +220,7 @@ int main(int argc, char *argv[])
 					{
 						for(j=0;j<k;j++)
 						{
-							if(strcmp(words[j].word,word)==0)
+							if(strcmpi(words[j].word,word)==0)
 							{
 								words[j].cnt++;
 								break;
@@ -234,12 +261,12 @@ int main(int argc, char *argv[])
 					strncat(word,&c,1);
 				else
 				{
-					if(strcmp(word,old)==0)
+					if(strcmpi(word,old)==0)
 					{
 						cnt++;
-						printf("\033[1;31m");
+						printf("\033[1;31m");	//To print in red colour
 						printf("%s",new_);
-						printf("\033[0m");
+						printf("\033[0m");	//To reset to default
 						write(fd2,new_,strlen(new_));
 					}
 					else
@@ -269,13 +296,15 @@ int main(int argc, char *argv[])
 			int i,cnt=0;
 			printf("Enter a pattern that you would like to find: ");
 			scanf("%s",pattern);
+			strlwr(pattern);
 			while((d=read(fd,&c,1)) > 0)
                         {
-				if(c==pattern[i])
+				char ch=tolower(c);
+				if(ch==pattern[i])
 				{
 					strncat(word,&c,1);
 					i++;
-					if(strcmp(word,pattern)==0)
+					if(strcmpi(word,pattern)==0)
 					{
 						printf("\033[1;31m");  //To highlight
 						printf("%s",word);
@@ -319,7 +348,7 @@ int main(int argc, char *argv[])
 					strncat(word,&c,1);
 				else
 				{
-					if(strcmp(word,d_word)==0)
+					if(strcmpi(word,d_word)==0)
 						cnt++;
 					else
 					{
