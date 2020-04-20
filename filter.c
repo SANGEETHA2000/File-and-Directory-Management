@@ -8,6 +8,7 @@
 #include<fcntl.h>
 #include<ctype.h>
 
+//function to compare two strings irrespective of case
 int strcmpi(char* s1, char* s2)
 {
         int i;
@@ -22,6 +23,7 @@ int strcmpi(char* s1, char* s2)
     return 0;
 }
 
+//Function to convert the entire string into lower case
 void strlwr(char s[])
 {
         int c=0;
@@ -67,7 +69,7 @@ int main(int argc, char *argv[])
 			return -1;
 		}
                 printf("fd : %d\n",fd);
-                if(strcmp(argv[1],"-M")==0)
+                if(strcmp(argv[1],"-M")==0)	//to convert contents to upper case
                 {
 			int j;
 			char newpath[PATH_MAX];
@@ -108,7 +110,7 @@ int main(int argc, char *argv[])
 			close(fd2);
 			close(fd);
                 }
-		else if(strcmp(argv[1],"-m")==0)
+		else if(strcmp(argv[1],"-m")==0)	//to convert contents to lower case
 		{
 			int j;
                         char newpath[PATH_MAX];
@@ -149,7 +151,7 @@ int main(int argc, char *argv[])
 			close(fd2);
                         close(fd);
 		}
-		else if(strcmp(argv[1],"-T")==0)
+		else if(strcmp(argv[1],"-T")==0)	//to convert the contents to toggle case
 		{
 			int j;
 			char newpath[PATH_MAX];
@@ -191,7 +193,7 @@ int main(int argc, char *argv[])
 			close(fd2);
 			close(fd);
 		}
-                else if(strcmp(argv[1],"-nofilter")==0)
+                else if(strcmp(argv[1],"-nofilter")==0)		//applies no filter
                 {
 			while((d=read(fd,&c,1)) > 0)
                         {
@@ -199,7 +201,7 @@ int main(int argc, char *argv[])
 			}
 			close(fd);
                 }
-		else if(strcmp(argv[1],"-C")==0)
+		else if(strcmp(argv[1],"-C")==0)	//counts the  number of words with given length
 		{
 			int len,k=0,j;
 			char word[PATH_MAX];
@@ -242,7 +244,7 @@ int main(int argc, char *argv[])
 			for(j=0;j<k;j++)
 				printf("%s\t\t%d\n",words[j].word,words[j].cnt);
 		}
-		else if(strcmp(argv[1],"-R")==0)
+		else if(strcmp(argv[1],"-R")==0)	//to replace a word with another word
 		{
 			char old[PATH_MAX],new_[PATH_MAX],newpath[PATH_MAX],word[PATH_MAX];
 			int j,cnt=0;
@@ -290,7 +292,7 @@ int main(int argc, char *argv[])
 			close(fd2);
 			close(fd);
 		}
-		else if(strcmp(argv[1],"-P")==0)
+		else if(strcmp(argv[1],"-P")==0)	//finds the instances of a particular pattern
 		{
 			char pattern[PATH_MAX],word[PATH_MAX];
 			int i,cnt=0;
@@ -331,7 +333,7 @@ int main(int argc, char *argv[])
 			printf("Found %d matches!\n",cnt);
 			close(fd);
 		}
-		else if(strcmp(argv[1],"-D")==0)
+		else if(strcmp(argv[1],"-D")==0)	//deletes a word
 		{
 			char d_word[PATH_MAX],word[PATH_MAX],newpath[PATH_MAX];
 			int i,j,cnt=0;
