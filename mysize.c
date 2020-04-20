@@ -9,7 +9,7 @@
 #include<string.h>
 #include<fcntl.h>
 
-//Function to compare two strings
+//Function to compare two strings irrespective of the case
 int strcmpi(char* s1, char* s2)
 {
 	int i;
@@ -389,7 +389,7 @@ int main(int argc, char *argv[])
 			{
 				printf("Name: %s \t",dp->d_name);
 				int fd=open(dp->d_name,O_RDONLY);
-				long int size = lseek(fd, 0, SEEK_END);
+				long int size = lseek(fd, 0, SEEK_END);		//returns the size from file beginning to end
                                 printf("Size: %ld\n",size);
 				close(fd);
 			}
