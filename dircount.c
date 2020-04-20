@@ -79,7 +79,7 @@ void find_path_of_directory(char *basePath,char *f)
 	closedir(dir);
 }
 
-//Function to compare two strings
+//Function to compare two strings irrespective of the case
 int strcmpi(char* s1, char* s2)
 {
 	int i;
@@ -110,7 +110,7 @@ int main(int argc,char *argv[])
 
 		if ((buf = (char *)malloc((size_t)size)) != NULL)
 		{
-        		ptr = getcwd(buf, (size_t)size);
+        		ptr = getcwd(buf, (size_t)size);		//getcwd() gets the current working directory
 		}
 		count_and_display(ptr);
 	}
