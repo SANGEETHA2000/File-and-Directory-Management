@@ -6,6 +6,7 @@
 #include<unistd.h>
 #include<ctype.h>
 
+//funtion to compare two strings
 int strcmpi(char* s1, char* s2)
 {
 	int i;
@@ -73,7 +74,7 @@ int main(int argc,char *argv[])
         			continue;
 			}
 			printf("%s:\n",dp->d_name);
-        		while(read(fd,&c,1)>0)
+        		while(read(fd,&c,1)>0)		//copying character wise and finally comparing the word formed
 			{
 				if(isalpha(c))
 					strncat(word,&c,1);
